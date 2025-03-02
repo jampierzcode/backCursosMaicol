@@ -7,12 +7,12 @@ export default class CoursesCategoriesController {
     try {
       await auth.check()
       const data = request.only(['categories']) // Asume que estos campos existen
-
-      const course = await CourseCategory.create(data)
+      if (data.categories && Array.isArray(data.categories)) {
+        await CourseCategory.createMany(data.categories) // Guardar las asociaciones en la tabla intermedia
+      }
       return {
         status: 'success',
         message: 'course saved with success',
-        data: course,
       }
     } catch (error) {
       return {

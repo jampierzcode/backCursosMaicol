@@ -5,6 +5,12 @@ export default class CourseCategory extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare course_id: number
+
+  @column()
+  declare category_id: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
