@@ -7,6 +7,7 @@ export default class CoursesCategoriesController {
     try {
       await auth.check()
       const data = request.only(['categories']) // Asume que estos campos existen
+      console.log(data)
       if (data.categories && Array.isArray(data.categories)) {
         await CourseCategory.createMany(data.categories) // Guardar las asociaciones en la tabla intermedia
       }

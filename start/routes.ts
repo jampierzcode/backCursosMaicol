@@ -13,6 +13,9 @@ import { middleware } from './kernel.js'
 import RolesController from '#controllers/roles_controller'
 import CategoriesController from '#controllers/categories_controller'
 import CoursesController from '#controllers/courses_controller'
+import CoursesCategoriesController from '#controllers/courses_categories_controller'
+import SectionsController from '#controllers/sections_controller'
+import LessonsController from '#controllers/lessons_controller'
 
 router.get('/', async () => {
   return {
@@ -45,3 +48,25 @@ router.get('/api/courses/:id', [CoursesController, 'show']).as('course.show')
 router.post('/api/courses', [CoursesController, 'store']).as('course.store')
 router.put('/api/courses/:id', [CoursesController, 'update']).as('course.update')
 router.delete('/api/courses/:id', [CoursesController, 'destroy']).as('course.destroy')
+
+// RUTAS PARA sections
+router.get('/api/sections', [SectionsController, 'index']).as('section.index')
+router.get('/api/sections/:id', [SectionsController, 'show']).as('section.show')
+router.post('/api/sections', [SectionsController, 'store']).as('section.store')
+router.put('/api/sections/:id', [SectionsController, 'update']).as('section.update')
+router.delete('/api/sections/:id', [SectionsController, 'destroy']).as('section.destroy')
+router
+  .get('/api/sectionsByCourseId/:id', [SectionsController, 'sectionsByCourseId'])
+  .as('section.sectionsByCourseId')
+
+// RUTAS PARA lessons
+router.get('/api/lessons', [LessonsController, 'index']).as('lesson.index')
+router.get('/api/lessons/:id', [LessonsController, 'show']).as('lesson.show')
+router.post('/api/lessons', [LessonsController, 'store']).as('lesson.store')
+router.put('/api/lessons/:id', [LessonsController, 'update']).as('lesson.update')
+router.delete('/api/lessons/:id', [LessonsController, 'destroy']).as('lesson.destroy')
+
+// RUTAS PARA courses
+router
+  .post('/api/courses_categories', [CoursesCategoriesController, 'store'])
+  .as('course_category.store')

@@ -1,16 +1,30 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export default class CourseCategory extends BaseModel {
-  public static table = 'courses_categories'
+export default class Lesson extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare course_id: number
+  declare section_id: number
 
   @column()
-  declare category_id: number
+  declare title: string
+
+  @column()
+  declare description: string
+
+  @column()
+  declare resource: string
+
+  @column()
+  declare type_lesson: string
+
+  @column()
+  declare position: number
+
+  @column()
+  declare duration: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

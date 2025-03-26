@@ -24,7 +24,7 @@ export default class CoursesController {
   public async show({ params }: HttpContext) {
     try {
       console.log(params)
-      const course = await Course.findOrFail(params.id)
+      const course = await Course.query().preload('categories').where('id', params.id).first()
       console.log(course)
 
       return {
